@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Replay — The Hormone Fix | Better Body Academy</title>
+<meta name="description" content="The replay of the BBA Hormone Fix training. Available for 24 hours only.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="../img/bba-badge.png">
+<link rel="apple-touch-icon" href="../img/bba-badge.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#000000;
+    --bg-deep:#050505;
+    --ink:#FFFFFF;
+    --muted:rgba(255,255,255,0.68);
+    --subtle:rgba(255,255,255,0.5);
+    --pink:#F58FA8;
+    --pink-glow:#FFB6CE;
+    --line:rgba(255,255,255,0.1);
+    --line-strong:rgba(255,255,255,0.2);
+    --warn:#F59E0B;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(245,143,168,0.28), transparent 55%),
+      radial-gradient(ellipse 50% 40% at 90% 100%, rgba(255,182,206,0.15), transparent 60%);
+  }
+
+  /* Top expiry bar */
+  .expiry-bar{
+    position:sticky;top:0;z-index:50;
+    background:linear-gradient(90deg, #F59E0B, #FFB6CE);
+    color:#000;text-align:center;padding:10px 20px;
+    font-size:13px;font-weight:700;letter-spacing:0.02em;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+  }
+  .expiry-bar svg{width:16px;height:16px}
+
+  nav.top{
+    position:relative;z-index:2;max-width:1280px;margin:0 auto;
+    padding:22px 32px;display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{display:flex;align-items:center}
+  .logo img{height:32px;width:auto;display:block;filter:drop-shadow(0 4px 14px rgba(245,143,168,0.3))}
+  nav.top .badge{
+    font-size:11px;color:var(--pink);font-weight:700;letter-spacing:0.18em;text-transform:uppercase;
+    padding:6px 12px;border-radius:999px;border:1px solid rgba(245,143,168,0.3);background:rgba(245,143,168,0.08);
+  }
+
+  main{position:relative;z-index:1}
+
+  .hero{
+    max-width:980px;margin:0 auto;padding:48px 32px 28px;text-align:center;
+  }
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;
+    background:rgba(245,143,168,0.12);border:1px solid rgba(245,143,168,0.35);
+    color:var(--pink);font-size:12px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;
+    margin-bottom:22px;
+  }
+  h1{
+    font-weight:800;font-size:clamp(34px, 5vw, 56px);line-height:1.04;letter-spacing:-0.03em;margin:0 0 14px;
+  }
+  h1 .serif{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--pink)}
+  .hero-sub{font-size:18px;color:var(--muted);max-width:620px;margin:0 auto 0;line-height:1.55}
+  .hero-sub strong{color:#fff;font-weight:600}
+
+  /* Video block */
+  .video-section{padding:40px 32px}
+  .video-inner{max-width:1100px;margin:0 auto}
+  .video-wrap{
+    position:relative;width:100%;aspect-ratio:16/9;background:#0A0A0A;
+    border:1px solid var(--line);border-radius:24px;overflow:hidden;
+    box-shadow:0 30px 80px -20px rgba(245,143,168,0.35);
+  }
+  .video-placeholder{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:linear-gradient(135deg, rgba(245,143,168,0.1), rgba(255,182,206,0.04));
+  }
+  .video-placeholder .play-btn{
+    width:96px;height:96px;border-radius:50%;
+    background:linear-gradient(135deg, var(--pink), var(--pink-glow));
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 20px 60px -10px rgba(245,143,168,0.6);
+    margin-bottom:22px;
+  }
+  .video-placeholder .play-btn svg{width:36px;height:36px;color:#000;margin-left:4px}
+  .video-placeholder .play-label{font-size:14px;color:var(--muted);font-weight:500;letter-spacing:0.04em}
+
+  /* Timer below video */
+  .replay-timer{
+    margin:24px auto 0;max-width:520px;display:flex;align-items:center;justify-content:center;gap:14px;
+    padding:14px 22px;background:rgba(255,255,255,0.04);
+    border:1px solid var(--line);border-radius:14px;
+    font-family:'JetBrains Mono', ui-monospace, monospace;font-size:14px;color:var(--muted);
+  }
+  .replay-timer strong{color:#fff;font-variant-numeric:tabular-nums}
+  .replay-timer .pulse{
+    width:8px;height:8px;border-radius:50%;background:var(--pink);
+    animation:pulseDot 2s infinite;box-shadow:0 0 10px rgba(245,143,168,0.6);
+  }
+  @keyframes pulseDot{0%,100%{opacity:1}50%{opacity:0.3}}
+
+  /* Recap section */
+  .recap-section{padding:80px 32px 40px}
+  .recap-inner{max-width:1100px;margin:0 auto}
+  .recap-eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+    color:var(--pink);margin-bottom:14px;
+  }
+  .recap-eyebrow::before{content:'';width:24px;height:1px;background:var(--pink)}
+  .recap-title{
+    font-weight:800;font-size:clamp(28px, 3.8vw, 42px);
+    letter-spacing:-0.025em;margin:0 0 36px;line-height:1.1;
+  }
+  .recap-title .serif{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--pink)}
+  .recap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .recap-card{
+    background:rgba(255,255,255,0.04);border:1px solid var(--line);border-radius:20px;
+    padding:32px 28px;transition:all 0.3s;
+  }
+  .recap-card:hover{transform:translateY(-4px);border-color:rgba(245,143,168,0.4);box-shadow:0 20px 60px -20px rgba(245,143,168,0.4)}
+  .recap-num{
+    display:inline-flex;width:48px;height:48px;border-radius:14px;
+    background:linear-gradient(135deg, rgba(245,143,168,0.2), rgba(255,182,206,0.2));
+    border:1px solid rgba(245,143,168,0.35);
+    align-items:center;justify-content:center;
+    font-family:'Instrument Serif',serif;font-style:italic;font-size:22px;color:var(--pink);
+    margin-bottom:20px;
+  }
+  .recap-card h3{font-size:20px;font-weight:700;letter-spacing:-0.01em;margin:0 0 10px;line-height:1.25}
+  .recap-card p{font-size:14.5px;color:var(--muted);margin:0;line-height:1.6}
+  @media (max-width:900px){.recap-grid{grid-template-columns:1fr}}
+
+  /* Game Plan CTA */
+  .gp-section{padding:60px 32px 80px}
+  .gp-inner{max-width:1100px;margin:0 auto}
+  .gp-card{
+    background:linear-gradient(135deg, var(--pink) 0%, var(--pink-glow) 100%);
+    border-radius:32px;padding:60px 48px;position:relative;overflow:hidden;
+    display:grid;grid-template-columns:1.2fr 0.8fr;gap:48px;align-items:center;
+  }
+  .gp-card::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 30% 0%, rgba(255,255,255,0.22), transparent 50%);
+    pointer-events:none;
+  }
+  .gp-card > *{position:relative;z-index:1}
+  .gp-eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+    color:rgba(0,0,0,0.7);margin-bottom:14px;
+  }
+  .gp-eyebrow::before{content:'';width:24px;height:1px;background:rgba(0,0,0,0.45)}
+  .gp-card h2{
+    color:#000;font-weight:800;font-size:clamp(28px, 4vw, 44px);
+    letter-spacing:-0.025em;margin:0 0 16px;line-height:1.1;
+  }
+  .gp-card h2 .serif{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:rgba(0,0,0,0.7)}
+  .gp-card p{color:rgba(0,0,0,0.78);font-size:16px;line-height:1.55;margin:0 0 20px}
+  .gp-card p strong{color:#000;font-weight:700}
+  .gp-points{list-style:none;padding:0;margin:0 0 28px;display:grid;gap:10px}
+  .gp-points li{
+    display:flex;align-items:flex-start;gap:10px;color:#000;font-size:15px;font-weight:600;
+  }
+  .gp-points li::before{
+    content:'';flex-shrink:0;width:22px;height:22px;border-radius:50%;background:#000;
+    margin-top:1px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F58FA8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+    background-repeat:no-repeat;background-position:center;background-size:14px 14px;
+  }
+  .gp-btn{
+    display:inline-flex;align-items:center;gap:10px;padding:18px 36px;border-radius:14px;
+    background:#000;color:var(--pink);font-weight:800;font-size:16px;text-decoration:none;letter-spacing:0.01em;
+    transition:all 0.25s;box-shadow:0 12px 40px -8px rgba(0,0,0,0.4);
+  }
+  .gp-btn:hover{transform:translateY(-2px);box-shadow:0 16px 50px -8px rgba(0,0,0,0.55);background:#0A0A0A}
+  .gp-meta{font-size:13px;color:rgba(0,0,0,0.65);margin-top:14px;letter-spacing:0.02em}
+
+  .gp-stats{display:grid;gap:14px}
+  .gp-stat{
+    background:rgba(0,0,0,0.12);border-radius:16px;padding:20px;backdrop-filter:blur(8px);
+  }
+  .gp-stat-num{font-weight:800;font-size:32px;color:#000;letter-spacing:-0.02em;line-height:1}
+  .gp-stat-label{font-size:12px;color:rgba(0,0,0,0.7);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-top:6px}
+
+  @media (max-width:900px){
+    .gp-card{grid-template-columns:1fr;padding:40px 28px;gap:32px}
+    .gp-stats{grid-template-columns:repeat(3,1fr)}
+    .gp-stat{padding:16px 14px}
+    .gp-stat-num{font-size:24px}
+  }
+
+  footer{padding:48px 32px 64px;text-align:center;border-top:1px solid var(--line);background:var(--bg-deep)}
+  .footer-inner{max-width:880px;margin:0 auto}
+  .copyright{font-size:11.5px;color:var(--subtle);letter-spacing:0.02em}
+  footer p{margin:8px 0;font-size:12px;color:var(--muted)}
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--pink)}
+
+  @media (max-width:600px){
+    .hero{padding:32px 20px 20px}
+    .hero h1{font-size:32px}
+    .video-section, .recap-section, .gp-section{padding:32px 20px}
+    .expiry-bar{font-size:11.5px;padding:9px 14px}
+    nav.top{padding:16px 20px}
+  }
+</style>
+</head>
+<body>
+
+<div class="expiry-bar">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+  <span>Replay closes in <strong id="bannerCountdown">24:00:00</strong></span>
+</div>
+
+<nav class="top">
+  <div class="logo">
+    <img src="../img/bba-logo-transparent.png" alt="Better Body Academy">
+  </div>
+  <span class="badge">Replay</span>
+</nav>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-eyebrow">&#9654; Watch the recording</div>
+    <h1>The Hormone Fix <span class="serif">replay.</span></h1>
+    <p class="hero-sub">Catch the full 60-minute training plus the live Q&amp;A. The replay is open for <strong>24 hours from when the live ended</strong>, then it comes down.</p>
+  </section>
+
+  <section class="video-section">
+    <div class="video-inner">
+      <div class="video-wrap">
+        <div class="video-placeholder" id="videoPlaceholder">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
+          </div>
+          <div class="play-label">Replay loads here once it's uploaded</div>
+        </div>
+        <!-- Paste the embed code here when ready (Vimeo, YouTube unlisted, Loom, etc):
+        <iframe src="https://player.vimeo.com/video/YOUR_ID" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+        -->
+      </div>
+
+      <div class="replay-timer">
+        <span class="pulse"></span>
+        <span>Replay expires in <strong id="inlineCountdown">24:00:00</strong></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="recap-section">
+    <div class="recap-inner">
+      <div class="recap-eyebrow">What we covered</div>
+      <h2 class="recap-title">The three things <span class="serif">to take away.</span></h2>
+      <div class="recap-grid">
+        <div class="recap-card">
+          <div class="recap-num">01</div>
+          <h3>The hormone shift after 35</h3>
+          <p>Estrogen, cortisol, and insulin rewrite themselves between 35 and 50. The plan that worked at 28 is the same plan burning your nervous system out now.</p>
+        </div>
+        <div class="recap-card">
+          <div class="recap-num">02</div>
+          <h3>The three myths that keep women stuck</h3>
+          <p>More cardio, fewer carbs, more willpower. All three backfire when your cortisol is high and your estrogen is shifting. We walked through why.</p>
+        </div>
+        <div class="recap-card">
+          <div class="recap-num">03</div>
+          <h3>The 3-pillar BBA framework</h3>
+          <p>Hormone-aware nutrition. Strength-led training. Recovery you actually do. The same system we use with every woman in this stage of life.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gp-section">
+    <div class="gp-inner">
+      <div class="gp-card">
+        <div>
+          <div class="gp-eyebrow">Your next step</div>
+          <h2>Book your <span class="serif">Game Plan call.</span></h2>
+          <p>The framework is simple. Applying it without accountability is where most women quit. If you want a coach who actually checks in, this is the call.</p>
+          <ul class="gp-points">
+            <li>30 minutes with a BBA coach</li>
+            <li>We map your specific hormone picture</li>
+            <li>You walk away with a concrete next step</li>
+          </ul>
+          <a href="#" class="gp-btn" id="bookCall">
+            <span>Book my Game Plan call</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <p class="gp-meta">No pitch deck on the call. If we're a fit we'll tell you. If not, we'll tell you that too.</p>
+        </div>
+        <div class="gp-stats">
+          <div class="gp-stat"><div class="gp-stat-num">500+</div><div class="gp-stat-label">Women coached</div></div>
+          <div class="gp-stat"><div class="gp-stat-num">94%</div><div class="gp-stat-label">Kept the weight off</div></div>
+          <div class="gp-stat"><div class="gp-stat-num">5-15kg</div><div class="gp-stat-label">Average drop</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p>Questions about the program? <a href="mailto:">Email us</a> or DM us on Instagram / Facebook.</p>
+    <div class="copyright">&copy; Better Body Academy &middot; All rights reserved</div>
+  </div>
+</footer>
+
+<script>
+  // The replay is open for 24 hours from REPLAY_ANCHOR.
+  // Set this to the ISO datetime when the live webinar ended.
+  // If null, defaults to 24h from page load (good for previewing).
+  var REPLAY_ANCHOR = null;
+
+  (function(){
+    var anchor;
+    if (REPLAY_ANCHOR) {
+      anchor = new Date(REPLAY_ANCHOR);
+      if (isNaN(anchor.getTime())) anchor = new Date();
+    } else {
+      anchor = new Date();
+    }
+    var expiresAt = new Date(anchor.getTime() + 24 * 60 * 60 * 1000);
+    var banner = document.getElementById('bannerCountdown');
+    var inline = document.getElementById('inlineCountdown');
+
+    function pad(n){ return n < 10 ? '0' + n : '' + n; }
+    function tick(){
+      var diff = expiresAt.getTime() - Date.now();
+      if (diff <= 0) {
+        if (banner) banner.textContent = 'Closed';
+        if (inline) inline.textContent = 'Closed';
+        // Optional: redirect to game plan booking when replay expires
+        return;
+      }
+      var s = Math.floor(diff / 1000);
+      var h = Math.floor(s / 3600); s -= h * 3600;
+      var m = Math.floor(s / 60);   s -= m * 60;
+      var label = pad(h) + ':' + pad(m) + ':' + pad(s);
+      if (banner) banner.textContent = label;
+      if (inline) inline.textContent = label;
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+
+</body>
+</html>
