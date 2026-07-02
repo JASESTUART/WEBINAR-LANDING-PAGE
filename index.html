@@ -685,7 +685,7 @@
       var lastName = document.getElementById('lastName').value.trim();
       var email = document.getElementById('email').value.trim();
       var phone = document.getElementById('phone').value.trim();
-      var smsConsent = document.getElementById('smsConsent').checked;
+      var smsConsent = document.getElementById('smsConsent')?.checked || false;
       if (!firstName || !lastName || !email || !phone) return;
 
       var btn = form.querySelector('.form-cta');
